@@ -20,7 +20,7 @@ const Register = () => {
     try {
       // 
     // https://ccn-university-library-server.onrender.com
-      const response = await axios.post("https://ccn-university-library-server.onrender.com", {
+      const response = await axios.post("https://ccn-university-library-server.onrender.com/api/register", {
         name,
         email,
         password,

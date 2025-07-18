@@ -4,6 +4,10 @@ import Home from "../pages/Home";
 import ErrorPage from "../pages/ErrorPage";
 import Login from "../features/auth/Login";
 import Register from "../features/auth/Register";
+import PrivateRoute from "./PrivateRoute";
+import DashboardLayout from "../features/dashboard/DashboardLayout";
+import DashboardHome from "../features/dashboard/DashboardHome";
+import AllUsers from "../features/dashboard/AllUsers";
 
 const router = createBrowserRouter([
   {
@@ -14,6 +18,18 @@ const router = createBrowserRouter([
       { path: '/', element: <Home /> },
       { path: '/login', element: <Login /> },
       { path: '/register', element: <Register /> },
+    ],
+  },
+  {
+    path: '/dashboard',
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
+    children: [
+      { path: '', element: <DashboardHome /> },
+      { path: 'all-users', element: <AllUsers /> },
     ]
   }
 ]);

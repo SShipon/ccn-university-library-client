@@ -1,11 +1,39 @@
-import { Link } from "react-router-dom";
+/* eslint-disable no-unused-vars */
+import { Link, useNavigate } from "react-router-dom";
+import { Home, BookOpen, PlusSquare, Users, Menu, X } from "lucide-react";
+import { useState } from "react";
 
 const Sidebar = () => {
+  const [isOpen, setIsOpen] = useState(true);
+  const navigate = useNavigate();
+
+  const toggleSidebar = () => setIsOpen(!isOpen);
+
   return (
-    <div className="w-64 min-h-screen bg-blue-800 text-white p-6 space-y-4">
-      <h2 className="text-2xl font-bold mb-4">Dashboard</h2>
-      <Link to="/dashboard" className="block">Dashboard Home</Link>
-      <Link to="/dashboard/all-users" className="block">All Users</Link>
+    <div className={`bg-gray-900 text-white min-h-screen transition-all duration-300 ${isOpen ? 'w-64' : 'w-16'} flex flex-col`}>
+      {/* Top Section */}
+      <div className="flex justify-between items-center p-4 border-b border-gray-700">
+        {isOpen && <h1 className="text-xl font-bold">Dashboard</h1>}
+        <button onClick={toggleSidebar} className="text-white">
+          {isOpen ? <X /> : <Menu />}
+        </button>
+      </div>
+
+      {/* Navigation Links */}
+      <nav className="flex-1 p-4 flex flex-col gap-4">
+        <Link to="/" className="flex items-center gap-3 hover:bg-gray-800 p-3 rounded">
+          <Home /> {isOpen && <span>Home</span>}
+        </Link>
+        <Link to="/dashboard/all-books" className="flex items-center gap-3 hover:bg-gray-800 p-3 rounded">
+          <BookOpen /> {isOpen && <span>All Books</span>}
+        </Link>
+        <Link to="/dashboard/add-books" className="flex items-center gap-3 hover:bg-gray-800 p-3 rounded">
+          <PlusSquare /> {isOpen && <span>Add Book</span>}
+        </Link>
+        <Link to="/dashboard/all-users" className="flex items-center gap-3 hover:bg-gray-800 p-3 rounded">
+          <Users /> {isOpen && <span>All Users</span>}
+        </Link>
+      </nav>
     </div>
   );
 };

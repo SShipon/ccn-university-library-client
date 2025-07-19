@@ -3,7 +3,7 @@ import axios from "axios";
 
 // API calls
 export const loginUser = async ({ email, password }) => {
-  const response = await axios.post("https://ccn-university-library-server.onrender.com/login", { email, password });
+  const response = await axios.post("https://ccn-university-library-server.onrender.com/api/login", { email, password });
   return response.data;
 };
 

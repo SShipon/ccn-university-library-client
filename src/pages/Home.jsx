@@ -1,4 +1,12 @@
+import BooksSection from "../components/BooksSection";
+
+
 const Home = () => {
-    return <div className="text-3xl text-center font-bold">Welcome to CCN Library 📖</div>;
+    return (
+        <div>
+             <BooksSection />
+        </div>
+    );
 };
+
 export default Home;

@@ -37,7 +37,7 @@ export const useAddBook = () => {
         createdAt: new Date(),
       };
 
-      const response = await axios.post("https://ccn-university-library-server.onrender.com/api/books", bookData);
+      const response = await axios.post("https://ccn-university-library-server-production.up.railway.app/api/books", bookData);
       if (response.status === 201) {
         alert("Book Added Successfully!");
         setFormData({

@@ -1,10 +1,11 @@
-import BooksSection from "../components/BooksSection";
+import BooksPage from "../components/BooksPage";
+
 
 
 const Home = () => {
     return (
         <div>
-             <BooksSection />
+            <BooksPage/>
         </div>
     );
 };

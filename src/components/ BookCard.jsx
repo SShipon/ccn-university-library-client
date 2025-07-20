@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
 import { Star } from "lucide-react";
+import CustomButton from "./CustomButton";
 
 const BookCard = ({ book }) => {
   return (
@@ -39,9 +40,7 @@ const BookCard = ({ book }) => {
 
         <div className="flex justify-between items-center">
           <Link to={`/book/${book._id}`}>
-            <button className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold py-2 px-4 rounded-full transition-all">
-              Details
-            </button>
+            <CustomButton>Details</CustomButton>
           </Link>
         </div>
       </div>

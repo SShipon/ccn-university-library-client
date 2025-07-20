@@ -9,15 +9,13 @@ const BooksSection = () => {
   if (loading) return <p className="text-center p-4">Loading books...</p>;
 
   return (
-    <section className="p-6 max-w-7xl mx-auto">
-      <h2 className="text-3xl font-bold mb-6 text-center">📚 Featured Books</h2>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {books.map((book) => (
-          <BookCard key={book._id} book={book} />
+        <div className=" bg-gray-100 dark:bg-black px-[10px] py-10 flex justify-center">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 w-full max-w-5xl">
+        {books.map((book, index) => (
+          <BookCard key={index} book={book} />
         ))}
       </div>
-    </section>
+    </div>
   );
 };
 

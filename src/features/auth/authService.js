@@ -8,8 +8,9 @@ export const loginUser = async ({ email, password }) => {
 };
 
 export const registerUser = async ({ name, email, password }) => {
-  const response = await axios.post("hhttps://ccn-university-library-server-production.up.railway.app/api/register", { name, email, password });
+  const response = await axios.post("https://ccn-university-library-server-production.up.railway.app/api/register", { name, email, password });
   return response.data;
 };
 
 
+//http://localhost:5000

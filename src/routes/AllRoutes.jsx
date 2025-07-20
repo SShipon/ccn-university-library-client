@@ -10,7 +10,11 @@ import DashboardHome from "../features/dashboard/DashboardHome";
 import AllUsers from "../features/dashboard/AllUsers";
 import AddBooks from "../features/dashboard/AddBooks";
 import AllBooks from "../features/dashboard/AllBooks";
-import Books from "../pages/Books";
+import BookSearch from "../pages/Books";
+import BookDetails from "../components/BookDetails";
+import Contact from "../pages/Contact";
+import About from "../pages/About";
+
 
 const router = createBrowserRouter([
   {
@@ -19,9 +23,12 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       { path: '/', element: <Home /> },
-        { path: '/books', element: <Books /> },
+        { path: '/books', element: <BookSearch/> },
       { path: '/login', element: <Login /> },
       { path: '/register', element: <Register /> },
+       { path: '/contact', element: <Contact /> },
+       { path: '/about', element: <About /> },
+       { path: '/book/:id', element: <BookDetails /> },
     ],
   },
   {

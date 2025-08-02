@@ -8,13 +8,13 @@ import PrivateRoute from "./PrivateRoute";
 import DashboardLayout from "../features/dashboard/DashboardLayout";
 import DashboardHome from "../features/dashboard/DashboardHome";
 import AllUsers from "../features/dashboard/AllUsers";
-import AddBooks from "../features/dashboard/AddBooks";
-import AllBooks from "../features/dashboard/AllBooks";
 import BookSearch from "../pages/Books";
 import BookDetails from "../components/BookDetails";
 import Contact from "../pages/Contact";
 import About from "../pages/About";
-
+import DashboardApprove from "../features/dashboard/BookApprove";
+import AddBooks from "../pages/AddBook";
+import AllBooks from "../features/dashboard/AllBooks";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +27,7 @@ const router = createBrowserRouter([
       { path: '/login', element: <Login /> },
       { path: '/register', element: <Register /> },
        { path: '/contact', element: <Contact /> },
+        { path: '/add-books', element: <AddBooks /> },
        { path: '/about', element: <About /> },
        { path: '/book/:id', element: <BookDetails /> },
     ],
@@ -41,8 +42,8 @@ const router = createBrowserRouter([
     children: [
       { path: '', element: <DashboardHome /> },
       { path: 'all-users', element: <AllUsers /> },
-      { path: 'add-books', element: <AddBooks /> },
       { path: 'all-books', element: <AllBooks /> },
+       { path: 'book-approve', element: <DashboardApprove /> },
     ],
   },
 ]);

@@ -8,7 +8,7 @@ const AllUsers = () => {
   const getUsers = async () => {
     setLoading(true);
     try {
-      const data = await fetchAllUsers();
+      const data = await fetchAllUsers(); // Fetching the users from the API
       setUsers(data);
     } catch (error) {
       console.error("Failed to fetch users:", error);
@@ -19,14 +19,15 @@ const AllUsers = () => {
 
   useEffect(() => {
     getUsers();
-  }, []);
+  }, []); // Run getUsers once when the component mounts
 
   const handleRoleChange = async (id, currentRole) => {
-    const newRole = currentRole === "admin" ? "user" : "admin";
+    const newRole = currentRole === "admin" ? "student" : "admin"; // Toggle between 'admin' and 'user'
+
     try {
-      await updateUserRole(id, newRole);
+      await updateUserRole(id, newRole);  // Call the API to update the user's role
       alert(`Role updated to ${newRole}`);
-      getUsers();
+      getUsers(); // Re-fetch the updated users
     } catch (error) {
       console.error("Role update failed:", error);
       alert("Failed to update role");
@@ -38,7 +39,7 @@ const AllUsers = () => {
       <h2 className="text-3xl font-bold mb-4">All Users</h2>
 
       {loading ? (
-        <p className="text-center">Loading...</p>
+        <p className="text-center">Loading...</p> // Show loading message while fetching
       ) : (
         <div className="overflow-x-auto">
           <table className="min-w-full border text-center">
@@ -63,11 +64,11 @@ const AllUsers = () => {
                       onClick={() => handleRoleChange(user._id, user.role)}
                       className={`px-4 py-2 rounded text-white font-bold ${
                         user.role === "admin"
-                          ? "bg-red-600 hover:bg-red-700"
-                          : "bg-green-600 hover:bg-green-700"
+                          ? "bg-red-600 hover:bg-red-700"  // Button style for admin
+                          : "bg-green-600 hover:bg-green-700"  // Button style for user
                       }`}
                     >
-                      Make {user.role === "admin" ? "User" : "Admin"}
+                      Make {user.role === "admin" ? "student" : "Admin"}  {/* Toggle role */}
                     </button>
                   </td>
                 </tr>

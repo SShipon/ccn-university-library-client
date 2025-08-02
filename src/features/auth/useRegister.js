@@ -6,6 +6,7 @@ export const useRegister = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [role, setRole] = useState("student"); // Default role is student
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
@@ -18,11 +19,12 @@ export const useRegister = () => {
     setSuccess("");
 
     try {
-      await registerUser({ name, email, password });
+      await registerUser({ name, email, password, role });
       setSuccess("Registration successful! Please login.");
       setName("");
       setEmail("");
       setPassword("");
+      setRole("student"); // Reset role to default
       navigate("/login");
     } catch (err) {
       setError(err.response?.data?.message || "Something went wrong. Please try again.");
@@ -38,6 +40,8 @@ export const useRegister = () => {
     setEmail,
     password,
     setPassword,
+    role,
+    setRole,
     error,
     success,
     loading,

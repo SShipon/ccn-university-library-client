@@ -9,7 +9,7 @@ const BookDetails = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`https://ccn-university-library-server-production.up.railway.app/api/books/${id}`)
+    fetch(`http://localhost:5000/api/books/${id}`)
       .then(res => {
         if (!res.ok) {
           throw new Error("Failed to fetch book");

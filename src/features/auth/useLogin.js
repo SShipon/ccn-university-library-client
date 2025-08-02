@@ -18,8 +18,13 @@ export const useLogin = () => {
       const { user, token } = await loginUser({ email, password });
       if (token) {
         localStorage.setItem("access-token", token);
-        localStorage.setItem("user-info", JSON.stringify(user));
-        navigate(user.role === "admin" ? "/dashboard" : "/");
+        localStorage.setItem("student-info", JSON.stringify(user));
+        // Redirect based on role
+        if (user.role === "admin") {
+          navigate("/dashboard");
+        } else {
+          navigate("/dashboard");
+        }
         window.location.reload();
       }
     } catch (err) {

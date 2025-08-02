@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "https://ccn-university-library-server-production.up.railway.app/api/books";
+const API_URL = "http://localhost:5000/api/books";
 
 export const fetchBooksApi = async () => {
   return await axios.get(API_URL);
@@ -16,3 +16,4 @@ export const deleteBookApi = async (id) => {
 
 
 //https://ccn-university-library-server-production.up.railway.app
+//http://localhost:5000

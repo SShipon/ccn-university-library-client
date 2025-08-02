@@ -27,11 +27,12 @@ const Sidebar = () => {
         <Link to="/dashboard/all-books" className="flex items-center gap-3 hover:bg-gray-800 p-3 rounded">
           <BookOpen /> {isOpen && <span>All Books</span>}
         </Link>
-        <Link to="/dashboard/add-books" className="flex items-center gap-3 hover:bg-gray-800 p-3 rounded">
-          <PlusSquare /> {isOpen && <span>Add Book</span>}
-        </Link>
         <Link to="/dashboard/all-users" className="flex items-center gap-3 hover:bg-gray-800 p-3 rounded">
           <Users /> {isOpen && <span>All Users</span>}
+        </Link>
+        {/* Add DashboardApprove link */}
+        <Link to="/dashboard/book-approve" className="flex items-center gap-3 hover:bg-gray-800 p-3 rounded">
+          <Users /> {isOpen && <span>Approve Books</span>}  {/* Icon and label */}
         </Link>
       </nav>
     </div>

@@ -4,7 +4,7 @@ import BookCard from "./ BookCard";
 
 
 const BooksSection = () => {
-  const { books, loading } = useLimitedBooks(6);
+  const { books, loading } = useLimitedBooks(24);
 
   if (loading) return <p className="text-center p-4">Loading books...</p>;
 

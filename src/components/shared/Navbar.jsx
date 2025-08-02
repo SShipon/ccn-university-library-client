@@ -9,7 +9,7 @@ const Navbar = () => {
   const { darkMode, toggleTheme } = useContext(ThemeContext);
   const navigate = useNavigate();
 
-  const user = JSON.parse(localStorage.getItem("user-info") || "null");
+  const user = JSON.parse(localStorage.getItem("student-info") || "null");
 
   useEffect(() => {
     const token = localStorage.getItem("access-token");
@@ -20,7 +20,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("access-token");
-    localStorage.removeItem("user-info");
+    localStorage.removeItem("student-info");
     setIsLoggedIn(false);
     navigate("/");
     window.location.reload();
@@ -33,8 +33,16 @@ const Navbar = () => {
         <div className="hidden md:flex gap-6">
           <Link to="/" className="hover:text-yellow-300">Home</Link>
           <Link to="/books" className="hover:text-yellow-300">Books</Link>
+           {user?.role === "student" && (
+              <Link to="/add-books" className="hover:text-yellow-300">Books Post</Link>
+          )}
           {user?.role === "admin" && (
             <Link to="/dashboard" className="hover:text-yellow-300">Dashboard</Link>
+            
+          )}
+          {user?.role === "admin" && (
+          <Link to="/add-books" className="hover:text-yellow-300">Books Post</Link>
+            
           )}
            <Link to="/about" className="hover:text-yellow-300">About</Link>
           <Link to="/contact" className="hover:text-yellow-300">Contact</Link>

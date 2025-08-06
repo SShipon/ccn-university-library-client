@@ -1,17 +1,24 @@
-import { useEffect, useState } from "react";
+/* eslint-disable no-unused-vars */
+import React, { useEffect, useState } from "react";
 import { fetchAllUsers, updateUserRole } from "../../hooks/usersService";
-
 const AllUsers = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [currentUserRole, setCurrentUserRole] = useState(null);
+
+  useEffect(() => {
+    const storedRole = localStorage.getItem("role");
+    setCurrentUserRole(storedRole);
+  }, []);
 
   const getUsers = async () => {
     setLoading(true);
     try {
-      const data = await fetchAllUsers(); // Fetching the users from the API
+      const data = await fetchAllUsers();
       setUsers(data);
     } catch (error) {
       console.error("Failed to fetch users:", error);
+      alert("Failed to load users");
     } finally {
       setLoading(false);
     }
@@ -19,15 +26,14 @@ const AllUsers = () => {
 
   useEffect(() => {
     getUsers();
-  }, []); // Run getUsers once when the component mounts
+  }, []);
 
   const handleRoleChange = async (id, currentRole) => {
-    const newRole = currentRole === "admin" ? "student" : "admin"; // Toggle between 'admin' and 'user'
-
+    const newRole = currentRole === "admin" ? "student" : "admin";
     try {
-      await updateUserRole(id, newRole);  // Call the API to update the user's role
-      alert(`Role updated to ${newRole}`);
-      getUsers(); // Re-fetch the updated users
+      await updateUserRole(id, newRole);
+      alert(`User role updated to ${newRole}`);
+      getUsers();
     } catch (error) {
       console.error("Role update failed:", error);
       alert("Failed to update role");
@@ -37,9 +43,8 @@ const AllUsers = () => {
   return (
     <div className="p-4">
       <h2 className="text-3xl font-bold mb-4">All Users</h2>
-
       {loading ? (
-        <p className="text-center">Loading...</p> // Show loading message while fetching
+        <p className="text-center">Loading...</p>
       ) : (
         <div className="overflow-x-auto">
           <table className="min-w-full border text-center">
@@ -53,26 +58,38 @@ const AllUsers = () => {
               </tr>
             </thead>
             <tbody>
-              {users.map((user, index) => (
-                <tr key={user._id} className="odd:bg-gray-100">
-                  <td className="p-3">{index + 1}</td>
-                  <td className="p-3">{user.name}</td>
-                  <td className="p-3">{user.email}</td>
-                  <td className="p-3 font-semibold">{user.role}</td>
-                  <td className="p-3">
-                    <button
-                      onClick={() => handleRoleChange(user._id, user.role)}
-                      className={`px-4 py-2 rounded text-white font-bold ${
-                        user.role === "admin"
-                          ? "bg-red-600 hover:bg-red-700"  // Button style for admin
-                          : "bg-green-600 hover:bg-green-700"  // Button style for user
-                      }`}
-                    >
-                      Make {user.role === "admin" ? "student" : "Admin"}  {/* Toggle role */}
-                    </button>
+              {users.length === 0 ? (
+                <tr>
+                  <td colSpan="5" className="p-3">
+                    No users found.
                   </td>
                 </tr>
-              ))}
+              ) : (
+                users.map((user, index) => (
+                  <tr key={user._id} className="odd:bg-gray-100">
+                    <td className="p-3">{index + 1}</td>
+                    <td className="p-3">{user.name}</td>
+                    <td className="p-3">{user.email}</td>
+                    <td className="p-3 font-semibold">{user.role}</td>
+                    <td className="p-3">
+                      {currentUserRole === "admin" ? (
+                        <button
+                          onClick={() => handleRoleChange(user._id, user.role)}
+                          className={`px-4 py-2 rounded text-white font-bold ${
+                            user.role === "admin"
+                              ? "bg-red-600 hover:bg-red-700"
+                              : "bg-green-600 hover:bg-green-700"
+                          }`}
+                        >
+                          Make {user.role === "admin" ? "Student" : "Admin"}
+                        </button>
+                      ) : (
+                        <span>—</span>
+                      )}
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

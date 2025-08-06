@@ -16,15 +16,17 @@ export const useLogin = () => {
 
     try {
       const { user, token } = await loginUser({ email, password });
+
       if (token) {
-        localStorage.setItem("access-token", token);
+        // ✅ Store token and role for future use
+        localStorage.setItem("token", token);
+        localStorage.setItem("role", user.role);
         localStorage.setItem("student-info", JSON.stringify(user));
-        // Redirect based on role
-        if (user.role === "admin") {
-          navigate("/dashboard");
-        } else {
-          navigate("/dashboard");
-        }
+
+        // ✅ Redirect user based on role (optional)
+        navigate("/dashboard");
+
+        // ✅ Reload to re-trigger protected components/data
         window.location.reload();
       }
     } catch (err) {

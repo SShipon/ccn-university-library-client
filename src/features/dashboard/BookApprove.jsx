@@ -10,7 +10,7 @@ const DashboardApprove = () => {
   useEffect(() => {
     axios.get('http://localhost:5000/api/books', {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem('token')}` // Attach JWT token here
+        Authorization: `Bearer ${localStorage.getItem('access-token')}` // Attach JWT token here
       }
     })
       .then(response => {
@@ -44,7 +44,7 @@ const rejectBook = async (bookId) => {
   try {
     const response = await axios.patch(`http://localhost:5000/api/books/reject/${bookId}`, {}, {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem('token')}`  // Attach JWT token here
+        Authorization: `Bearer ${localStorage.getItem('access-token')}`  // Attach JWT token here
       }
     });
     alert(response.data.message);

@@ -5,15 +5,16 @@ import { ThemeContext } from "../../context/ThemeContext";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState(null);
   const { darkMode, toggleTheme } = useContext(ThemeContext);
   const navigate = useNavigate();
 
-  const user = JSON.parse(localStorage.getItem("student-info") || "null");
-
+  // Load user from localStorage
   useEffect(() => {
-    const token = localStorage.getItem("access-token");
-    setIsLoggedIn(!!token);
+    const storedUser = localStorage.getItem("student-info");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
   }, []);
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
@@ -21,34 +22,43 @@ const Navbar = () => {
   const handleLogout = () => {
     localStorage.removeItem("access-token");
     localStorage.removeItem("student-info");
-    setIsLoggedIn(false);
+    setUser(null);
     navigate("/");
-    window.location.reload();
+    window.location.reload(); // Optional, if needed to reload app state
   };
+
+  const isLoggedIn = !!localStorage.getItem("access-token");
 
   return (
     <nav className={`w-full ${darkMode ? "bg-gray-900" : "bg-blue-700"} text-white`}>
       <div className="flex justify-between items-center max-w-7xl mx-auto p-4">
         <Link to="/" className="font-bold text-xl">📚 Library</Link>
+
+        {/* Desktop Menu */}
         <div className="hidden md:flex gap-6">
           <Link to="/" className="hover:text-yellow-300">Home</Link>
           <Link to="/books" className="hover:text-yellow-300">Books</Link>
-           {user?.role === "student" && (
-              <Link to="/add-books" className="hover:text-yellow-300">Books Post</Link>
+
+          {/* Only student can see Book Post */}
+          {user?.role === "student" && (
+            <Link to="/add-books" className="hover:text-yellow-300">Books Post</Link>
           )}
+
+          {/* Only admin can see Dashboard */}
           {user?.role === "admin" && (
             <Link to="/dashboard" className="hover:text-yellow-300">Dashboard</Link>
-            
           )}
+
+          {/* Admin can also post books if needed */}
           {user?.role === "admin" && (
-          <Link to="/add-books" className="hover:text-yellow-300">Books Post</Link>
-            
+            <Link to="/add-books" className="hover:text-yellow-300">Books Post</Link>
           )}
-           <Link to="/about" className="hover:text-yellow-300">About</Link>
+
+          <Link to="/about" className="hover:text-yellow-300">About</Link>
           <Link to="/contact" className="hover:text-yellow-300">Contact</Link>
-        
         </div>
 
+        {/* Right side buttons */}
         <div className="flex items-center gap-4">
           {isLoggedIn ? (
             <button
@@ -69,24 +79,38 @@ const Navbar = () => {
           <button onClick={toggleTheme} className="p-2 rounded-full">
             {darkMode ? <Sun /> : <Moon />}
           </button>
+
+          {/* Mobile menu toggle */}
           <button onClick={toggleMenu} className="md:hidden">
             {menuOpen ? <X /> : <Menu />}
           </button>
         </div>
       </div>
 
+      {/* Mobile Menu */}
       {menuOpen && (
         <div className={`flex flex-col gap-4 p-4 ${darkMode ? "bg-gray-800" : "bg-blue-600"} md:hidden`}>
           <Link to="/" onClick={toggleMenu}>Home</Link>
           <Link to="/books" onClick={toggleMenu}>Books</Link>
-          {user?.role === "admin" && (
-            <Link to="/dashboard" onClick={toggleMenu}>Dashboard</Link>
+
+          {user?.role === "student" && (
+            <Link to="/add-books" onClick={toggleMenu}>Books Post</Link>
           )}
-          <Link to="/contact" onClick={toggleMenu}>Contact</Link>
-          <Link to="/help" onClick={toggleMenu}>Help</Link>
+
+          {user?.role === "admin" && (
+            <>
+              <Link to="/dashboard" onClick={toggleMenu}>Dashboard</Link>
+              <Link to="/add-books" onClick={toggleMenu}>Books Post</Link>
+            </>
+          )}
+
           <Link to="/about" onClick={toggleMenu}>About</Link>
+          <Link to="/contact" onClick={toggleMenu}>Contact</Link>
+
           {isLoggedIn ? (
-            <button onClick={() => {handleLogout(); toggleMenu();}}>Logout</button>
+            <button onClick={() => { handleLogout(); toggleMenu(); }}>
+              Logout
+            </button>
           ) : (
             <Link to="/login" onClick={toggleMenu}>Login</Link>
           )}

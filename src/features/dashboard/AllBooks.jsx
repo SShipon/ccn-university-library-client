@@ -1,6 +1,5 @@
 import { useBooks } from "../../hooks/useBooks";
 
-
 const AllBooks = () => {
   const {
     books,
@@ -27,9 +26,14 @@ const AllBooks = () => {
             <thead className="bg-gray-200">
               <tr>
                 <th className="p-2">#</th>
-                <th className="p-2">Book Name</th>
+                <th className="p-2">Title</th>
                 <th className="p-2">Author</th>
-                <th className="p-2">Action</th>
+                <th className="p-2">Category</th>
+                <th className="p-2">Department</th>
+                <th className="p-2">Year</th>
+                <th className="p-2">Rating</th>
+                <th className="p-2">Copies</th>
+                <th className="p-2">Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -38,6 +42,11 @@ const AllBooks = () => {
                   <td className="p-2">{index + 1}</td>
                   <td className="p-2">{book.title}</td>
                   <td className="p-2">{book.author}</td>
+                  <td className="p-2">{book.category}</td>
+                  <td className="p-2">{book.department}</td>
+                  <td className="p-2">{book.publishedYear}</td>
+                  <td className="p-2">{book.rating}</td>
+                  <td className="p-2">{book.availableCopies}</td>
                   <td className="p-2 flex gap-2">
                     <button
                       className="bg-red-500 text-white px-3 py-1 rounded"
@@ -87,7 +96,58 @@ const AllBooks = () => {
               required
             />
 
-            {/* অন্যান্য ইনপুট ফিল্ডও এখানে যোগ করো */}
+            <input
+              type="text"
+              name="category"
+              value={editingBook.category}
+              onChange={handleEditChange}
+              placeholder="Category"
+              className="w-full mb-3 p-2 border rounded"
+            />
+
+            <input
+              type="text"
+              name="department"
+              value={editingBook.department}
+              onChange={handleEditChange}
+              placeholder="Department"
+              className="w-full mb-3 p-2 border rounded"
+            />
+
+            <input
+              type="number"
+              name="publishedYear"
+              value={editingBook.publishedYear || ""}
+              onChange={handleEditChange}
+              placeholder="Published Year"
+              className="w-full mb-3 p-2 border rounded"
+            />
+
+            <input
+              type="number"
+              name="rating"
+              value={editingBook.rating || ""}
+              onChange={handleEditChange}
+              placeholder="Rating (1-5)"
+              className="w-full mb-3 p-2 border rounded"
+            />
+
+            <input
+              type="number"
+              name="availableCopies"
+              value={editingBook.availableCopies || ""}
+              onChange={handleEditChange}
+              placeholder="Available Copies"
+              className="w-full mb-3 p-2 border rounded"
+            />
+
+            <textarea
+              name="description"
+              value={editingBook.description || ""}
+              onChange={handleEditChange}
+              placeholder="Description"
+              className="w-full mb-3 p-2 border rounded"
+            />
 
             <button
               type="submit"

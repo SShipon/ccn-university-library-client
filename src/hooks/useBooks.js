@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { deleteBookApi, fetchBooksApi, updateBookApi } from "../../api/booksApi";
 
+
 export const useBooks = () => {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -52,24 +53,18 @@ export const useBooks = () => {
   };
 
   const handleDelete = async (id) => {
-  console.log("Deleting book with id:", id);  // Add log to see if ID is correct
+    const confirmDelete = window.confirm("Are you sure you want to delete this book?");
+    if (!confirmDelete) return;
 
-  const confirmDelete = window.confirm("Are you sure you want to delete this book?");
-  if (!confirmDelete) return;
-  
-  try {
-    await deleteBookApi(id);  // API call
-    console.log("Book deleted successfully");  // Log on success
-
-    // Remove the deleted book from the list
-    setBooks((prevBooks) => prevBooks.filter((book) => book._id !== id));
-
-    alert("Book deleted!");
-  } catch (error) {
-    console.error("Delete failed:", error);  // Log error if it occurs
-    alert("Delete failed!");
-  }
-};
+    try {
+      await deleteBookApi(id);
+      setBooks((prevBooks) => prevBooks.filter((book) => book._id !== id));
+      alert("Book deleted!");
+    } catch (error) {
+      console.error("Delete failed:", error);
+      alert("Delete failed!");
+    }
+  };
 
   return {
     books,

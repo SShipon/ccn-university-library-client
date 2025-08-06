@@ -3,11 +3,10 @@ import axios from "axios";
 const API_BASE = "http://localhost:5000/api/auth";
 
 const getAuthHeader = () => {
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("access-token"); // ✅ correct name
   if (!token) throw new Error("No token found");
   return { Authorization: `Bearer ${token}` };
 };
-
 export const fetchAllUsers = async () => {
   const res = await axios.get(`${API_BASE}/all-users`, {
     headers: getAuthHeader(),

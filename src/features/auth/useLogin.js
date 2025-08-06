@@ -19,7 +19,7 @@ export const useLogin = () => {
 
       if (token) {
         // ✅ Store token and role for future use
-        localStorage.setItem("token", token);
+        localStorage.setItem("access-token", token);
         localStorage.setItem("role", user.role);
         localStorage.setItem("student-info", JSON.stringify(user));
 

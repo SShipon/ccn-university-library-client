@@ -1,5 +1,6 @@
 import BooksPage from "../components/BooksPage";
 import Event from "../components/Event";
+import Reviews from "../components/Reviews";
 
 
 
@@ -8,6 +9,7 @@ const Home = () => {
         <div>
             <BooksPage/>
              <Event />
+             <Reviews />
         </div>
     );
 };

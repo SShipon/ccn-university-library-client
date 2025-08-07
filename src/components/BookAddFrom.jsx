@@ -39,7 +39,7 @@ const BookAddForm = () => {
     const response = await axios.post("http://localhost:5000/api/books", bookData);
     alert("Book added successfully!");
 
-    // **এখানে রিসেট করো সব ফিল্ডের স্টেট**
+
     setTitle("");
     setAuthor("");
     setCategory("");
@@ -57,7 +57,7 @@ const BookAddForm = () => {
 };
 
   return (
-     <div className="">
+     <div className="my-8">
   <form
     onSubmit={handleSubmit}
     className="text-black w-full max-w-4xl mx-auto bg-white rounded p-4 shadow-md space-y-4"

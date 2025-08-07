@@ -4,9 +4,9 @@ import newsEvent2 from '../assets/news-event-03.jpg'
 import { Calendar, Clock, MapPin } from 'lucide-react';
 const Event = () => {
     return (
-        <div className="border-4 p-7 border-indigo-500 flex flex-col items-center">
-             <h4>News & Events</h4>
-             <p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.</p>
+        <div className=" p-7  flex flex-col items-center">
+             <h4 className='text-2xl font-semibold '>News & Events</h4>
+             <p className='text-sm my-4'>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.</p>
              <div className='bg-slate-100 text-black'>
                   <div className='flex flex-col lg:flex-row'>
                 {/* Left Image Section */}
@@ -16,8 +16,8 @@ const Event = () => {
 
                 {/* Right Content Section */}
                 <div className="w-full lg:w-[50%] flex flex-row justify-center items-start px-4 py-6">
-                    <div>
-                        <h6 className="text-2xl font-bold mb-2">Event</h6>
+                    <div className='p-4'>
+                        <h6 className="text-sm font-semibold mb-2">Event</h6>
                         <div>
                                   <div className='flex gap-3 items-center'>
             <div className='flex items-center'>
@@ -37,7 +37,7 @@ const Event = () => {
                     </div>
 
                     {/* Right Image Section */}
-                    <div className="mt-4 lg:mt-0">
+                    <div className="">
                         <img className='w-[900px] h-[100%]' src={newsEvent1} alt="Event Details" />
                     </div>
                 </div>
@@ -46,7 +46,7 @@ const Event = () => {
     
                 {/* Left Image Section */}
                 <div className="w-full lg:w-[50%]">
-                   <h6>EVENT</h6>
+                   <h6 className='text-sm font-semibold mb-2'>EVENT</h6>
                 <div className='flex gap-3 items-center'>
             <div className='flex items-center'>
                 <Calendar className="text-gray-500 mr-2" />
@@ -75,7 +75,7 @@ const Event = () => {
                         <img className='w-[900px] h-[100%]' src={newsEvent2} alt="Event Details" />
                     </div>
                      <div>
-                        <h6 className="text-2xl font-bold mb-2">Event</h6>
+                        <h6 className="text-sm font-semibold mb-2">Event</h6>
                         <div>
                                   <div className='flex gap-3 items-center'>
             <div className='flex items-center'>

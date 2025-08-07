@@ -32,7 +32,7 @@ const Navbar = () => {
   return (
     <nav className={`w-full ${darkMode ? "bg-gray-900" : "bg-blue-700"} text-white`}>
       <div className="flex justify-between items-center max-w-7xl mx-auto p-4">
-        <Link to="/" className="font-bold text-xl">📚 Library</Link>
+        <Link to="/" className="font-bold text-xl">📚 UST Library</Link>
 
         {/* Desktop Menu */}
         <div className="hidden md:flex gap-6">

@@ -1,4 +1,6 @@
 import { useBooks } from "../../hooks/useBooks";
+import { Trash, Edit } from 'lucide-react';
+
 
 const AllBooks = () => {
   const {
@@ -49,16 +51,16 @@ const AllBooks = () => {
                   <td className="p-2">{book.availableCopies}</td>
                   <td className="p-2 flex gap-2">
                     <button
-                      className="bg-red-500 text-white px-3 py-1 rounded"
+                      className=" text-white px-3 py-1 rounded"
                       onClick={() => handleDelete(book._id)}
                     >
-                      Delete
+                       <Trash className="text-red-500" size={28} />
                     </button>
                     <button
-                      className="bg-blue-500 text-white px-3 py-1 rounded"
+                      className=" text-white px-3 py-1 rounded"
                       onClick={() => handleEditClick(book)}
                     >
-                      Edit
+                     <Edit className="text-green-500"  size={28} />
                     </button>
                   </td>
                 </tr>

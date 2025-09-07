@@ -62,6 +62,7 @@ export default function BookSearch() {
           width: "100%",
           padding: "8px 12px",
           fontSize: 16,
+          color:"black",
           borderRadius: 4,
           border: "1px solid #ccc",
           marginBottom: 20,

@@ -96,7 +96,7 @@ department: "Mathematics",
 },
 {
 _id: "64a888888888888888888888",
-title: "Modern Bangla Literature",
+title: "Advance Python ",
 author: "Anik Rahman",
 category: "Literature",
 description: "Recent trends in Bangla literature.",

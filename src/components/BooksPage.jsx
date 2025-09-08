@@ -1,4 +1,5 @@
-import BooksSection from "./BooksSection";
+// import BooksSection from "./BooksSection";
+import BookList from "./BookList";
 import SidebarFilters from "./SidebarFilters";
 
 const BooksPage = () => {
@@ -11,7 +12,8 @@ const BooksPage = () => {
 
       {/* Books */}
       <div className="md:col-span-3">
-        <BooksSection />
+        {/* <BooksSection /> */}
+         <BookList />
       </div>
     </div>
   );
